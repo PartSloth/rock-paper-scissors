@@ -5,7 +5,9 @@ function getComputerChoice() {
 };
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === 'Rock' && computerSelection === 'scissor') {
+    if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+        return 2;
+    } else if (playerSelection === 'Rock' && computerSelection === 'scissor') {
         return 1;
     } else if (playerSelection === 'Scissor' && computerSelection === 'paper') {
         return 1;
@@ -27,9 +29,10 @@ function game() {
 
         let result = playRound(playerSelection, computerSelection);
 
-        if (result === 1) {
+        if (result === 2) {
+            console.log("You tie!")
+        } else if (result === 1) {
             console.log("You win! " + playerSelection + " beats " + computerSelection + ".");
-
             playerScore++;
         } else {
             console.log("You lose! " + playerSelection + " loses to " + computerSelection + ".");
@@ -38,7 +41,9 @@ function game() {
 
     }
 
-    if (playerScore > computerScore) {
+    if (playerScore === computerScore) {
+        console.log("You tie!");
+    } else if (playerScore > computerScore) {
         console.log("You win!");
     } else {
         console.log("You lose! Try again!");
